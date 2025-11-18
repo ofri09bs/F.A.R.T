@@ -1,0 +1,31 @@
+.root {
+    background-image: url('assets/background.jpg');
+    -fx-background-image: url('assets/background.jpg');
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-font-family: "Consolas";
+}
+
+
+.label.subtitle {
+    -fx-text-fill: rgb(255, 0, 0);
+    -fx-font-size: 35px;
+    -fx-font-weight: bold;
+    -fx-stroke: black;
+    -fx-stroke-width: 5px;
+}
+
+.label.footer {
+    -fx-text-fill: darkred;
+    -fx-font-size: 14px;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-color: red;
+    -fx-border-width: 2;
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;
+    -fx-effect: dropshadow( gaussian , red , 5 , 0 , 0 , 0 );
+}

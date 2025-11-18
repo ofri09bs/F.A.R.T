@@ -9,6 +9,11 @@ public class DecryptFile {
     private static final SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
 
     public static void decrypt(Path inputFile, Path outputFile) throws Exception {
+
+        if (!inputFile.toString().endsWith(".enc")) {
+        return; 
+        }
+
         byte[] fileData = Files.readAllBytes(inputFile);
 
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
@@ -16,6 +21,12 @@ public class DecryptFile {
 
         byte[] decrypted = cipher.doFinal(fileData);
 
-        Files.write(outputFile, decrypted);
+        Files.write(inputFile, decrypted);
+
+        String originalName = inputFile.getFileName().toString().replace(".enc", "");
+        Path originalPath = inputFile.resolveSibling(originalName);
+
+        Files.move(inputFile, originalPath);
+
     }
 }
