@@ -3,13 +3,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import java.net.URL;
 import java.io.File;
+
 
 public class Main extends Application {
 
@@ -53,18 +52,21 @@ public class Main extends Application {
         // ===== ENCRYPT =====
         
         File folder = new File(folderPath);
-        if (!folder.exists()) {
-            return;
-        }
-        for (File file : folder.listFiles()) {
-            if (file.isFile()) {
-                try {
-                    EncryptFile.encrypt(file.toPath(), file.toPath());
-                    System.out.println("Encrypted: " + file.getName());
-                } catch (Exception ex) {
+            if (folder.exists()) { 
+                System.out.println("Folder found, encrypting...");
+                for (File file : folder.listFiles()) {
+                    if (file.isFile()) {
+                        try {
+                            EncryptFile.encrypt(file.toPath(), file.toPath());
+                            System.out.println("Encrypted: " + file.getName());
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
                 }
+            } else {
+                System.out.println("WARNING: Folder not found. Skipping encryption.");
             }
-        }
         
 
         // ===== DECRYPT =====
@@ -102,8 +104,18 @@ public class Main extends Application {
         root.setPadding(new Insets(400,0,0,0));
 
         Scene scene = new Scene(root, 700, 600);
-        File cssFile = new File("style.css");
-        scene.getStylesheets().add(cssFile.toURI().toString());
+        
+        URL cssUrl = getClass().getResource("/style.css");
+        if (cssUrl == null) {
+            System.out.println("Error: style.css not found in resources!");
+                cssUrl = getClass().getResource("style.css");
+        }
+            
+        if (cssUrl != null) {
+            scene.getStylesheets().add(cssUrl.toExternalForm());
+        } else {
+            System.out.println("CRITICAL: Could not load CSS from resources.");
+        }
 
         stage.setScene(scene);
         stage.show();
