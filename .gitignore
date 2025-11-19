@@ -1,4 +1,22 @@
-FART/
+# --- Java Compiled Files ---
 *.class
+
+# --- Packaged Files ---
 *.jar
+*.zip
+*.rar
 *.exe
+
+# --- Generated Build Folders ---
+# זה יתעלם מתיקיית ה-EXE שיצרת
+FART/
+bin/
+runtime/
+app/
+
+# --- IDE Settings (VS Code) ---
+.vscode/
+
+# --- OS Files ---
+Thumbs.db
+Desktop.ini
