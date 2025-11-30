@@ -4,6 +4,8 @@
 **Purpose:** Educational demonstration of file encryption/decryption with UI  
 
 ---
+<img width="1914" height="977" alt="image" src="https://github.com/user-attachments/assets/e628bcd0-0f6d-4416-b38f-6de2a90924fd" />
+
 
 ## Description
 
